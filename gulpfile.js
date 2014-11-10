@@ -9,19 +9,27 @@ var watch = require('gulp-watch');
 var connect = require('gulp-connect');
 var del = require('del');
 
+/// contants
+var SERVER_PORT = 5000;
+var LIVERELOAD_PORT = 35729;
+
 var paths = {
    input: {
       javascripts: ['devel/javascripts/**/*.js'],
-      stylesheets: ['devel/less/**/*.less']
+      stylesheets: ['devel/less/**/*.less'],
+      pages: ['**/*.html']
    },
    output: {
-      javascripts: 'javascripts',
-      stylesheets: 'stylesheets'
+      javascripts: 'app/assets/javascripts',
+      stylesheets: 'app/assets/stylesheets'
    }
 };
 
 gulp.task('clean', function(cb) {
-   del(['build'], cb);
+   del([
+      paths.javascripts + '/*.js',
+      paths.javascripts + '/*.css',
+   ], cb);
 });
 
 gulp.task('styles', ['clean'], function() {
@@ -30,12 +38,15 @@ gulp.task('styles', ['clean'], function() {
       .pipe(less())
       .pipe(sourcemaps.write())
       .pipe(gulp.dest(paths.output.stylesheets))
+      .pipe(connect.reload())
       .on('error', gutil.log);
 });
 
-gulp.task('minify', function() {
+gulp.task('minify', ['clean'] function() {
    gulp.src(paths.input.javascripts)
+      .pipe(sourcemaps.init())
       .pipe(uglify())
+      .pipe(sourcemaps.write())
       .pipe(gulp.dest(paths.output.javascripts));
 });
 
@@ -45,12 +56,21 @@ gulp.task('watch', function() {
          .pipe(less())
          .pipe(sourcemaps.write())
          .pipe(gulp.dest(paths.output.stylesheets))
+         .pipe(connect.reload())
          .on('error', gutil.log);
+   });
+   
+   watch(paths.input.pages, function(files) {
+      files.pipe(connect.reload());
    });
 });
 
 gulp.task('serve:app', function() {
-   connect.server();
+   connect.server({
+      root: 'app',
+      port: SERVER_PORT,
+      livereload: true
+   });
 });
 
 gulp.task('default', ['styles', 'watch']);
