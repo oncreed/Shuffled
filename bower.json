@@ -1,0 +1,29 @@
+{
+  "name": "Shuffled",
+  "main": "index.html",
+  "version": "0.0.1",
+  "description": "Shuffled boilerplate.",
+  "keywords": [
+    "shuffled",
+    "boilerplate",
+    "template",
+    "html5",
+    "canvas"
+  ],
+  "authors": [
+    "fizzafruit"
+  ],
+  "license": "BSD",
+  "homepage": "http://vastorigins.com",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "pixi": "~2.0.0"
+  }
+}
