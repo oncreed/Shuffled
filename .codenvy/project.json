@@ -1,1 +1,1 @@
-{"description":"Shuffled on the go.","type":"GulpJS","attributes":{}}
+{"runners":{"configs":{"system:/javascript/web/gulp":{"variables":{},"ram":0,"options":{}}},"default":"system:/javascript/web/gulp"},"description":"Shuffled on the go.","type":"GulpJS","attributes":{}}
