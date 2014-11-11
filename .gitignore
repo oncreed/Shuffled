@@ -2,3 +2,5 @@
 *.swp
 
 node_modules/
+!app/assets/images/lost_kids_contest.jpg
+!app/assets/images/pursuit.png
