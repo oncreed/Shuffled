@@ -1,34 +1,10 @@
 
 ##SystemText = require './entities/systemtext'
 
-WebFontConfig =
-    google:
-        families: [
-            'Snippet'
-            'Pacifico'
-            'Arvo:700italic'
-            'Podkova:700'
-        ]
-    active: ->
-        app = new ShuffledApp
-        app.sketch()
-        return
-
-do ->
-    wf = document.createElement 'script'
-    wf.src = (if 'https' is document.location.protocol then 'https' else 'http') +
-        '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js'
-
-    wf.type = 'text/javascript'
-    wf.async = 'true'
-    s = document.getElementsByTagName('script')[0]
-    s.parentNode.insertBefore wf, s
-
+# ShuffledApp
+# The main entry point of the app
 class ShuffledApp
-    constructor: ->
-        @screenWidth = 800
-        @screenHeight = 600
-
+    constructor: (@screenWidth, @screenHeight) ->
         @renderer = PIXI.autoDetectRenderer @screenWidth, @screenHeight
         document.body.appendChild @renderer.view
 
@@ -54,11 +30,12 @@ class ShuffledApp
         @sampleLogo.scale.y = 0.2
         @stage.addChild @sampleLogo
 
-        ##@sampleText = SystemText
-        ##@stage.addChild @sampleText
+        #@sampleText = SystemText
+        #@stage.addChild @sampleText
 
         requestAnimationFrame @animate
 
+    # animate callback
     animate: =>
         requestAnimationFrame @animate
         @renderer.render @stage
@@ -66,3 +43,7 @@ class ShuffledApp
 
     sketch: ->
         true
+
+##window.ShuffledApp = ShuffledApp
+module.exports = ShuffledApp
+

@@ -55,12 +55,13 @@ gulp.task('styles', ['clean'], function() {
 
 /// process and bundle all required scripts in order to run
 gulp.task('bundle', function() {
-    return browserify('./app/assets/javascripts/shuffled.js')
+    return browserify('./app/assets/javascripts/shuffled.js', { bare: true })
         .bundle()
         .on('error', gutil.log)
         .pipe(source('bundle.js'))
         .pipe(buffer())
-        .pipe(uglify())
+        /// skip compressing as not yet on production environment
+        //.pipe(uglify())
         .pipe(gulp.dest(paths.output.javascripts))
         .pipe(connect.reload())
         .on('end', gutil.log);

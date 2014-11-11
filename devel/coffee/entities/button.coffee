@@ -7,4 +7,9 @@ class Button extends PIXI.Sprite
     update: (deltaTime) ->
         return
 
+    press: ->
+        return
+
+    boundingbox: ->
+        return
 
