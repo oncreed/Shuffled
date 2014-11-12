@@ -9,7 +9,7 @@ WebFontConfig =
         ]
     active: ->
         ShuffledApp = require 'shuffled'
-        app = new ShuffledApp
+        app = new ShuffledApp 800, 600
         app.sketch()
         return
 

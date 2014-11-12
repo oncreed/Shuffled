@@ -21,8 +21,7 @@ class ShuffledApp
             PIXI.Texture.fromImage '/assets/images/pursuit.png'
         ]
 
-        @sampler = PIXI.Texture.fromImage 'http://localhost:5000/assets/images/lost_kids_contest.jpg'
-        @sampleBackground = new PIXI.Sprite @sampler
+        @sampleBackground = new PIXI.Sprite @sampleTextures[0]
         @sampleBackground.anchor.x = 0.5
         @sampleBackground.anchor.y = 0.5
         @sampleBackground.position.x = @screenWidth / 2
