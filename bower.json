@@ -26,6 +26,7 @@
   "dependencies": {
     "pixi": "~2.0.0",
     "stats.js": "https://github.com/mrdoob/stats.js.git",
-    "tween.js": "https://github.com/sole/tween.js.git"
+    "tween.js": "https://github.com/sole/tween.js.git",
+    "pace": "~1.0.2"
   }
 }
