@@ -10,7 +10,5 @@ class SystemText extends PIXI.Text
         @strokeColor = '#a4410e'
         @strokeThickness = 7
 
-
-
 module.exports = SystemText
 

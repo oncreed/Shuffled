@@ -4,5 +4,8 @@ class Background extends PIXI.Sprite
         @width = 0
         @height = 0
 
-    update: (deltaTime) ->
+    setPriority: ->
+        return
+
+    getPriority: ->
         return

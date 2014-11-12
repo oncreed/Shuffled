@@ -37,24 +37,24 @@ class ShuffledApp
         @sampleLogo.scale.y = 0.2
         @stage.addChild @sampleLogo
 
-        @sampleText = new PIXI.Text 'loading: 0',
-            font: 'bold italic 60px Arvo'
-            align: 'center'
-            fill: '#3e1707'
-            stroke: '#a4410e'
-            strokeThickness: 8
-        @sampleText.anchor.x = 0.5
-        @sampleText.anchor.y = 0.5
-        @sampleText.position.x = @screenWidth / 2
-        @sampleText.position.y = @screenWidth / 2 + 80
-        @stage.addChild @sampleText
+        ##@sampleText = new PIXI.Text 'loading: 0',
+        ##    font: 'bold italic 60px Arvo'
+        ##    align: 'center'
+        ##    fill: '#3e1707'
+        ##    stroke: '#a4410e'
+        ##    strokeThickness: 8
+        ##@sampleText.anchor.x = 0.5
+        ##@sampleText.anchor.y = 0.5
+        ##@sampleText.position.x = @screenWidth / 2
+        ##@sampleText.position.y = @screenWidth / 2 + 80
+        ##@stage.addChild @sampleText
 
         window.renderer = @renderer
         window.animate = @animate
         window.stage = @stage
         window.stats = @stats
 
-        @count = 0
+        ##@count = 0
 
         requestAnimationFrame @animate
 
@@ -64,8 +64,8 @@ class ShuffledApp
         @renderer.render @stage
         @stats.end()
 
-        @count += 0.1
-        @sampleText.setText 'loading: ' + (@count | 0)
+        ##@count += 0.1
+        ##@sampleText.setText 'loading: ' + (@count | 0)
 
         requestAnimationFrame @animate
         return

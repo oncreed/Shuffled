@@ -13,3 +13,8 @@ class Button extends PIXI.Sprite
     boundingbox: ->
         return
 
+    setPriority: ->
+        return
+
+    getPriority: ->
+        return
