@@ -8,7 +8,7 @@ WebFontConfig =
             'Podkova:700'
         ]
     active: ->
-        ShuffledApp = require './assets/javascripts/shuffled'
+        ShuffledApp = require 'shuffled'
         app = new ShuffledApp
         app.sketch()
         return
