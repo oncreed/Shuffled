@@ -1,5 +1,5 @@
 
-##SystemText = require './entities/systemtext'
+##SystemText = require 'systemtext'
 
 # ShuffledApp
 # The main entry point of the app
@@ -29,25 +29,29 @@ class ShuffledApp
         @sampleBackground.position.y = @screenHeight / 2
         @stage.addChild @sampleBackground
 
-        ##@sampleLogo = new PIXI.Sprite @sampleTextures[1]
-        ##@sampleLogo.anchor.x = 0.5
-        ##@sampleLogo.anchor.y = 0.5
-        ##@sampleLogo.position.x = @screenWidth / 2
-        ##@sampleLogo.position.y = @screenHeight / 2
-        ##@sampleLogo.scale.x = 0.2
-        ##@sampleLogo.scale.y = 0.2
-        ##@stage.addChild @sampleLogo
+        @sampleLogo = new PIXI.Sprite @sampleTextures[1]
+        @sampleLogo.anchor.x = 0.5
+        @sampleLogo.anchor.y = 0.5
+        @sampleLogo.position.x = @screenWidth / 2
+        @sampleLogo.position.y = @screenHeight / 2
+        @sampleLogo.scale.x = 0.2
+        @sampleLogo.scale.y = 0.2
+        @stage.addChild @sampleLogo
 
-        @sampleText = new PIXI.Text 'counting',
-            font: '60px Arvo'
-            fill: 'white'
-            align: 'left'
+        @sampleText = new PIXI.Text 'counting: 0',
+            font: 'bold italic 60px Arvo'
+            align: 'center'
+            fill: '#3e1707'
+            stroke: '#a4410e'
+            strokeThickness: 8
         @stage.addChild @sampleText
 
         window.renderer = @renderer
         window.animate = @animate
         window.stage = @stage
         window.stats = @stats
+
+        @count = 0
 
         requestAnimationFrame @animate
 
@@ -56,6 +60,9 @@ class ShuffledApp
         @stats.begin()
         @renderer.render @stage
         @stats.end()
+
+        @count += 0.1
+        @sampleText.setText 'counting: ' + (@count | 0)
 
         requestAnimationFrame @animate
         return
