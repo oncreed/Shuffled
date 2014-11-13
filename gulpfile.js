@@ -58,7 +58,7 @@ gulp.task('bundle', function() {
     return browserify('./app/assets/javascripts/main.js', { debug: true })
         .require('./app/assets/javascripts/globals', { expose: 'sh-globals' })
         .require('./app/assets/javascripts/shuffled', { expose: 'shuffled' })
-        .require('./app/assets/javascripts/draftengine', { expose: 'draftengine' })
+        .require('./app/assets/javascripts/beerpoweredengine', { expose: 'beerpoweredengine' })
         .require('./app/assets/javascripts/entities/background', { expose: 'background' })
         .require('./app/assets/javascripts/entities/button', { expose: 'button' })
         .require('./app/assets/javascripts/entities/loader', { expose: 'loader' })

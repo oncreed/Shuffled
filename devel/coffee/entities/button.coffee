@@ -1,18 +1,32 @@
 globals = require 'sh-globals'
 
+ButtonActiveState =
+    inactive: 0
+    active: 1
+
+ButtonMode =
+    focus: 1
+    click: 0
+    hover: 5
+
 class Button extends PIXI.Sprite
-    constructor: ->
-        @width = 0
-        @height = 0
+    constructor: (@textureOn, @textureOff, @texturePress) ->
+        super @textureOn
+        @isPress = false
+        @mode = ButtonMode.focus
 
     update: (deltaTime) ->
+        if @isPres
+            if @mode is ButtonMode.click
+                @setTexture @texturePress
         return
 
     press: ->
+        @isPress = true
         return
 
     getBoundingBox: ->
-        return
+        @getBounds
 
     setRenderPriority: ->
         return

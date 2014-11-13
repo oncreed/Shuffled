@@ -1,10 +1,8 @@
 globals = require 'sh-globals'
 
 class ProgressBar extends PIXI.Sprite
-    constructor: ->
-        @width = 0
-        @height = 0
-        @status = 0
+    constructor: (textureBlank, textureFull) ->
+        super textureBlank
 
     update: (deltaTime) ->
         return

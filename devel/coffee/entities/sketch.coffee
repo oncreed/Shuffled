@@ -2,8 +2,8 @@ globals = require 'sh-globals'
 
 class Sketch extends PIXI.Sprite
     constructor: (texture) ->
+        @renderPriority = globals.priority.normal
         super texture
-        @renderPriority = globals.priority.background
 
     setRenderPriority: (layer) ->
         @renderPriority = layer

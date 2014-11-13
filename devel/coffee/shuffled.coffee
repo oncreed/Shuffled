@@ -1,12 +1,11 @@
-
-DraftEngine = require 'draftengine'
+DraftEngine = require 'beerpoweredengine'
 Sketch = require 'sketch'
 
 # ShuffledApp
 # The main entry point of the app
 class ShuffledApp
     constructor: (@screenWidth, @screenHeight) ->
-        @engine = new DraftEngine @screenWidth, @screenHeight
+        @engine = new BeerPoweredEngine @screenWidth, @screenHeight
         @stage = new PIXI.Stage 0x000000
         @engine.setStage @stage
 

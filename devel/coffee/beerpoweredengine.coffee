@@ -1,5 +1,5 @@
 
-class DraftEngine
+class BeerPoweredEngine
     constructor: (@screenWidth, @screenHeight) ->
         @init()
 
