@@ -25,7 +25,7 @@ var paths = {
         javascripts: ['devel/coffee/**/*.coffee'],
         stylesheets: ['devel/less/**/*.less'],
         images: ['devel/images/**/*.jpg'],
-        tests: ['test/*.js'],
+        tests: ['tests/*.js'],
         pages: ['app/**/*.html']
     },
     output: {
@@ -155,7 +155,12 @@ gulp.task('serve:app', ['watch'], function() {
 /// test the boilerplate specs
 gulp.task('test', function() {
     return gulp.src(paths.input.tests)
-        .pipe(mocha({ reporter: 'spec' }));
+        .pipe(mocha({
+            reporter: 'spec',
+            globals: {
+                should: require('should')
+            }
+        }));
 });
 
 gulp.task('compile', ['scripts', 'bundle']);
