@@ -14,6 +14,7 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var del = require('del');
+var rename = require('gulp-rename');
 
 /// contants
 var SERVER_PORT = 5000;
@@ -53,6 +54,17 @@ gulp.task('styles', ['clean'], function() {
         .on('error', gutil.log);
 });
 
+/// process less files for production
+gulp.task('styles:prod', ['clean'], function() {
+    return gulp.src(paths.input.stylesheets)
+        .pipe(sourcemaps.init())
+        .pipe(less())
+        .pipe(sourcemaps.write())
+        .pipe(gulp.dest(paths.output.stylesheets))
+        .pipe(connect.reload())
+        .on('error', gutil.log);
+});
+
 /// process and bundle all required scripts in order to run
 gulp.task('bundle', function() {
     return browserify('./app/assets/javascripts/main.js', { debug: true })
@@ -62,15 +74,15 @@ gulp.task('bundle', function() {
         .require('./app/assets/javascripts/entities/background', { expose: 'background' })
         .require('./app/assets/javascripts/entities/button', { expose: 'button' })
         .require('./app/assets/javascripts/entities/loader', { expose: 'loader' })
-        .require('./app/assets/javascripts/entities/sketch', { expose: 'sketch' })
         .require('./app/assets/javascripts/entities/progressbar', { expose: 'progressbar' })
+        .require('./app/assets/javascripts/entities/scene', { expose: 'scene' })
+        .require('./app/assets/javascripts/entities/sketch', { expose: 'sketch' })
         .require('./app/assets/javascripts/entities/systemtext', { expose: 'systemtext' })
         .bundle()
         .on('error', gutil.log)
         .pipe(source('bundle.js'))
         .pipe(buffer())
-        /// skip compressing as not yet on production environment
-        //.pipe(uglify())
+        .pipe(uglify())
         .pipe(gulp.dest(paths.output.javascripts))
         .pipe(connect.reload())
         .on('end', gutil.log);

@@ -68,4 +68,4 @@ class BeerPoweredEngine
         return
 
 
-module.exports = DraftEngine
+module.exports = BeerPoweredEngine

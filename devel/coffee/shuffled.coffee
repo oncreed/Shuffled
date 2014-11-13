@@ -1,4 +1,4 @@
-DraftEngine = require 'beerpoweredengine'
+BeerPoweredEngine = require 'beerpoweredengine'
 Sketch = require 'sketch'
 
 # ShuffledApp
