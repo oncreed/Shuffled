@@ -56,8 +56,14 @@ gulp.task('styles', ['clean'], function() {
 /// process and bundle all required scripts in order to run
 gulp.task('bundle', function() {
     return browserify('./app/assets/javascripts/main.js', { debug: true })
+        .require('./app/assets/javascripts/globals', { expose: 'sh-globals' })
         .require('./app/assets/javascripts/shuffled', { expose: 'shuffled' })
         .require('./app/assets/javascripts/draftengine', { expose: 'draftengine' })
+        .require('./app/assets/javascripts/entities/background', { expose: 'background' })
+        .require('./app/assets/javascripts/entities/button', { expose: 'button' })
+        .require('./app/assets/javascripts/entities/loader', { expose: 'loader' })
+        .require('./app/assets/javascripts/entities/sketch', { expose: 'sketch' })
+        .require('./app/assets/javascripts/entities/progressbar', { expose: 'progressbar' })
         .require('./app/assets/javascripts/entities/systemtext', { expose: 'systemtext' })
         .bundle()
         .on('error', gutil.log)

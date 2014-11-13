@@ -1,6 +1,6 @@
 
-##SystemText = require 'systemtext'
 DraftEngine = require 'draftengine'
+Sketch = require 'sketch'
 
 # ShuffledApp
 # The main entry point of the app
@@ -15,14 +15,14 @@ class ShuffledApp
             PIXI.Texture.fromImage '/assets/images/pursuit.png'
         ]
 
-        @sampleBackground = new PIXI.Sprite @sampleTextures[0]
+        @sampleBackground = new Sketch @sampleTextures[0]
         @sampleBackground.anchor.x = 0.5
         @sampleBackground.anchor.y = 0.5
         @sampleBackground.position.x = @screenWidth / 2
         @sampleBackground.position.y = @screenHeight / 2
         @stage.addChild @sampleBackground
 
-        @sampleLogo = new PIXI.Sprite @sampleTextures[1]
+        @sampleLogo = new Sketch @sampleTextures[1]
         @sampleLogo.anchor.x = 0.5
         @sampleLogo.anchor.y = 0.5
         @sampleLogo.position.x = @screenWidth / 2
@@ -30,6 +30,10 @@ class ShuffledApp
         @sampleLogo.scale.x = 0.2
         @sampleLogo.scale.y = 0.2
         @stage.addChild @sampleLogo
+
+        ##@sampleSound = new Howl(
+        ##    urls: ['/assets/sounds/pacman_intro.mp3']
+        ##).play()
 
         ####@sampleText = new PIXI.Text 'loading: 0',
         ####    font: 'bold italic 60px Arvo'

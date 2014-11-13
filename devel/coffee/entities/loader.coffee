@@ -1,3 +1,4 @@
+globals = require 'sh-globals'
 
 class Loader extends PIXI.MovieClip
     constructor: ->
@@ -6,3 +7,5 @@ class Loader extends PIXI.MovieClip
 
     update: (deltaTime) ->
         return
+
+module.exports = Loader

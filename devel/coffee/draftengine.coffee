@@ -25,13 +25,13 @@ class DraftEngine
             context.strokeStyle = color
             context.stroke()
 
-        drawLine  57, 0,  57, 450, 114, '#808080'
-        drawLine 171, 0, 171, 450, 114, '#ffff00'
-        drawLine 285, 0, 285, 450, 114, '#00ffff'
-        drawLine 399, 0, 399, 450, 114, '#00ff00'
-        drawLine 513, 0, 513, 450, 114, '#ff00ff'
-        drawLine 627, 0, 627, 450, 114, '#ff0000'
-        drawLine 741, 0, 741, 450, 114, '#0000ff'
+        drawLine  57,   0,  57, 450, 114, '#808080'
+        drawLine 171,   0, 171, 450, 114, '#ffff00'
+        drawLine 285,   0, 285, 450, 114, '#00ffff'
+        drawLine 399,   0, 399, 450, 114, '#00ff00'
+        drawLine 513,   0, 513, 450, 114, '#ff00ff'
+        drawLine 627,   0, 627, 450, 114, '#ff0000'
+        drawLine 741,   0, 741, 450, 114, '#0000ff'
 
         drawLine 100, 450, 100, 500, 200, '#0000ff'
         drawLine 300, 450, 300, 500, 200, '#ff00ff'

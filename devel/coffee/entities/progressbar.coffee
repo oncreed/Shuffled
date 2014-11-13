@@ -1,3 +1,4 @@
+globals = require 'sh-globals'
 
 class ProgressBar extends PIXI.Sprite
     constructor: ->
@@ -10,3 +11,5 @@ class ProgressBar extends PIXI.Sprite
 
     settings: (opts) ->
         return
+
+module.exports = ProgressBar

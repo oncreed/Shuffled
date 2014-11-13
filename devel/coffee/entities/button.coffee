@@ -1,3 +1,4 @@
+globals = require 'sh-globals'
 
 class Button extends PIXI.Sprite
     constructor: ->
@@ -10,11 +11,13 @@ class Button extends PIXI.Sprite
     press: ->
         return
 
-    boundingbox: ->
+    getBoundingBox: ->
         return
 
-    setPriority: ->
+    setRenderPriority: ->
         return
 
-    getPriority: ->
+    getRenderPriority: ->
         return
+
+module.exports = Button

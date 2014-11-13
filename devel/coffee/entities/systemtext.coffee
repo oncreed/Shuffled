@@ -1,3 +1,4 @@
+globals = require 'sh-globals'
 
 class SystemText extends PIXI.Text
     constructor: (msg, style) ->

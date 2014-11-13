@@ -1,7 +1,8 @@
 globals = require 'sh-globals'
 
-class Background extends PIXI.Sprite
-    constructor: ->
+class Sketch extends PIXI.Sprite
+    constructor: (texture) ->
+        super texture
         @renderPriority = globals.priority.background
 
     setRenderPriority: (layer) ->
@@ -10,8 +11,4 @@ class Background extends PIXI.Sprite
     getRenderPriority: ->
         @renderPriority
 
-    addToStage: (stage) ->
-        stage.addChild @
-        return
-
-module.exports = Background
+module.exports = Sketch
