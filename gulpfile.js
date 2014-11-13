@@ -57,6 +57,7 @@ gulp.task('styles', ['clean'], function() {
 gulp.task('bundle', function() {
     return browserify('./app/assets/javascripts/main.js', { debug: true })
         .require('./app/assets/javascripts/shuffled', { expose: 'shuffled' })
+        .require('./app/assets/javascripts/draftengine', { expose: 'draftengine' })
         .require('./app/assets/javascripts/entities/systemtext', { expose: 'systemtext' })
         .bundle()
         .on('error', gutil.log)
