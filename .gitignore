@@ -1,5 +1,6 @@
 *~
 *.swp
+*.log
 
 node_modules/
 !app/assets/images/lost_kids_contest.jpg

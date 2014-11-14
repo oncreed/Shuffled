@@ -11,4 +11,8 @@ class Sketch extends PIXI.Sprite
     getRenderPriority: ->
         @renderPriority
 
+    addToStage: (stage) ->
+        stage.addChild @
+        return
+
 module.exports = Sketch

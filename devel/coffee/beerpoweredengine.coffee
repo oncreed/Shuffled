@@ -56,7 +56,7 @@ class BeerPoweredEngine
         @stage = stage
         window.stage = @stage
 
-    animate: =>
+    animate: (time) =>
         @stats.begin()
 
         if @stage?
@@ -65,6 +65,7 @@ class BeerPoweredEngine
         @stats.end()
 
         requestAnimationFrame @animate
+        TWEEN.update time
         return
 
 

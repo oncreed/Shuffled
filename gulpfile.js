@@ -8,7 +8,7 @@ var gutil = require('gulp-util');
 var watch = require('gulp-watch');
 var connect = require('gulp-connect');
 var coffee = require('gulp-coffee');
-var imagemin = require('gulp-imagemin');
+//var imagemin = require('gulp-imagemin');
 var mocha = require('gulp-mocha');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
@@ -69,6 +69,7 @@ gulp.task('styles:prod', ['clean'], function() {
 gulp.task('bundle', function() {
     return browserify('./app/assets/javascripts/main.js', { debug: true })
         .require('./app/assets/javascripts/globals', { expose: 'sh-globals' })
+        .require('./app/assets/javascripts/configs', { expose: 'sh-configs' })
         .require('./app/assets/javascripts/shuffled', { expose: 'shuffled' })
         .require('./app/assets/javascripts/beerpoweredengine', { expose: 'beerpoweredengine' })
         .require('./app/assets/javascripts/entities/background', { expose: 'background' })
@@ -100,13 +101,13 @@ gulp.task('scripts', ['clean'], function() {
 });
 
 /// process uncompress images
-gulp.task('images', ['clean'], function() {
-    return gulp.src(paths.input.images)
-        .pipe(imagemin({ optimizationLevel: 5 }))
-        .pipe(gulp.dest(paths.output.images))
-        .pipe(connect.reload())
-        .on('error', gutil.log);
-});
+//gulp.task('images', ['clean'], function() {
+//    return gulp.src(paths.input.images)
+//        .pipe(imagemin({ optimizationLevel: 5 }))
+//        .pipe(gulp.dest(paths.output.images))
+//        .pipe(connect.reload())
+//        .on('error', gutil.log);
+//});
 
 /// compress and minify javascripts
 gulp.task('minify', ['clean'], function() {
