@@ -13,12 +13,6 @@ class ShuffledApp
 
         @loader = new Loader @screenWidth, @screenHeight, @stage
 
-        @loadSound = new Howl(
-            urls: ['/assets/sounds/flo_rida.mp3']
-            autoplay: true
-            loop: true
-        ).play()
-
     sketch: ->
         true
 

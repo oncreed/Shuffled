@@ -7,6 +7,9 @@ SystemText = require 'systemtext'
 
 class Loader
     constructor: (@screenWidth, @screenHeight, @stage) ->
+        @tasksDone = false
+        @tasksCount = 0
+        @tasksCompleted = 0
         @textures = [
             PIXI.Texture.fromImage '/assets/images/lost_kids_contest.jpg'
             PIXI.Texture.fromImage '/assets/images/pursuit_blue.png'
@@ -39,8 +42,8 @@ class Loader
         @logo.alpha = 0.0
         @logo.addToStage @stage
 
-        @startButton = new SystemText 'Click here to start the game...',
-            font: 'bold italic 42px Arvo'
+        @startButton = new SystemText 'Play',
+            font: 'bold 42px Arvo'
             align: 'center'
             fill: '#3e1707'
             stroke: '#a4410e'
@@ -51,6 +54,13 @@ class Loader
         @startButton.position.y = @screenWidth / 2 + 90
         @startButton.alpha = 0.0
         @startButton.addToStage @stage
+
+        @loadSound = new Howl
+            urls: ['/assets/sounds/flo_rida.mp3']
+            autoplay: false
+            loop: true
+            onload: ->
+                console.log 'finished loading sound'
 
         $ = @
         tween = new TWEEN.Tween(
@@ -64,7 +74,23 @@ class Loader
             $.startButton.alpha = 1.0
         ).start()
 
+
+    taskToLoad: (count) ->
+        @tasksCount = count
+
+    addToFinishedTask: () ->
+        if not @tasksCount is @tasksCompleted
+            @tasksCompleted += 1
+        else
+            @tasksDone = true
+
     update: (deltaTime) ->
+        if @tasksDone
+            ## do change mode here
+            return
+        else
+            return
+
         return
 
 module.exports = Loader
