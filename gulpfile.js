@@ -83,7 +83,7 @@ gulp.task('bundle', function() {
         .on('error', gutil.log)
         .pipe(source('bundle.js'))
         .pipe(buffer())
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest(paths.output.javascripts))
         .pipe(connect.reload())
         .on('end', gutil.log);
@@ -145,7 +145,15 @@ gulp.task('watch', function() {
 });
 
 /// serve the app
-gulp.task('serve:app', ['watch'], function() {
+//gulp.task('serve:app', ['watch'], function() {
+//    connect.server({
+//        root: 'app',
+//        port: SERVER_PORT,
+//        livereload: true
+//    });
+//});
+
+gulp.task('serve:app', function() {
     connect.server({
         root: 'app',
         port: SERVER_PORT,

@@ -2,7 +2,7 @@
 WebFontConfig =
     google:
         families: [
-            'Snippet'
+            'Anton'
             'Pacifico'
             'Arvo:700italic'
             'Podkova:700'

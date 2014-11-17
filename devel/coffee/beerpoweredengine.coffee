@@ -49,23 +49,28 @@ class BeerPoweredEngine
         window.stats = @stats
         window.stage = @stage
 
+        @poller = null
+
         requestAnimationFrame @animate
         return
 
-    setStage: (stage) ->
-        @stage = stage
+    setStage: (@stage) ->
         window.stage = @stage
+        return
 
-    animate: (time) =>
+    setPoller: (@poller) ->
+        return
+
+    animate: (deltaTime) =>
         @stats.begin()
-
         if @stage?
             @renderer.render @stage
 
+        @poller?.call()
         @stats.end()
 
         requestAnimationFrame @animate
-        TWEEN.update time
+        TWEEN.update deltaTime
         return
 
 

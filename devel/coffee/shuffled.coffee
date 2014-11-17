@@ -10,8 +10,13 @@ class ShuffledApp
         @engine = new BeerPoweredEngine @screenWidth, @screenHeight
         @stage = new PIXI.Stage 0x000000
         @engine.setStage @stage
+        @engine.setPoller @update
 
         @loader = new Loader @screenWidth, @screenHeight, @stage
+
+    update: (deltaTime) =>
+        @loader.update deltaTime
+        return
 
     sketch: ->
         true

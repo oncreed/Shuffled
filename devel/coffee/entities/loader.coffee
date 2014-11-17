@@ -7,14 +7,26 @@ SystemText = require 'systemtext'
 
 class Loader
     constructor: (@screenWidth, @screenHeight, @stage) ->
+        $ = @
+
         @tasksDone = false
         @tasksCount = 0
         @tasksCompleted = 0
+        @tradeOff = false
         @textures = [
             PIXI.Texture.fromImage '/assets/images/lost_kids_contest.jpg'
             PIXI.Texture.fromImage '/assets/images/pursuit_blue.png'
             PIXI.Texture.fromImage '/assets/images/pursuit.png'
         ]
+
+        ##@backgroundMaskRadius = 50
+        ##@backgroundMask = new PIXI.Graphics
+        ##@backgroundMask.beginFill(0xffffff)
+        ##@backgroundMask.drawCircle 400, 320, @backgroundMaskRadius
+        ##@backgroundMask.endFill()
+        ##@stage.addChild @backgroundMask
+
+        @myFilter = new PIXI.RGBSplitFilter;
 
         @background = new Background @textures[0]
         @background.anchor.x = 0.5
@@ -22,6 +34,8 @@ class Loader
         @background.position.x = @screenWidth / 2
         @background.position.y = @screenHeight / 2
         @background.addToStage @stage
+
+        ##@background.mask = @backgroundMask
 
         @logoNoFill = new Sketch @textures[1]
         @logoNoFill.anchor.x = 0.5
@@ -43,7 +57,7 @@ class Loader
         @logo.addToStage @stage
 
         @startButton = new SystemText 'Play',
-            font: 'bold 42px Arvo'
+            font: 'bold 42px Anton'
             align: 'center'
             fill: '#3e1707'
             stroke: '#a4410e'
@@ -53,6 +67,31 @@ class Loader
         @startButton.position.x = @screenWidth / 2
         @startButton.position.y = @screenWidth / 2 + 90
         @startButton.alpha = 0.0
+        @startButton.interactive = true
+
+        @startButton.mouseover = (data) ->
+            return
+        @startButton.mouseout = (data) ->
+            return
+        @startButton.mousedown = (data) ->
+            $.startButton.scale.x = 0.8
+            $.startButton.scale.y = 0.8
+            $.tradeOff = true
+            return
+        @startButton.mouseup = (data) ->
+            $.startButton.scale.x = 1.0
+            $.startButton.scale.y = 1.0
+            return
+        @startButton.click = (data) ->
+            $.background.filters = [$.myFilter]
+            return
+        @startButton.touchstart = (data) ->
+            return
+        @startButton.touchend = (data) ->
+            return
+        @startButton.tap = (data) ->
+            return
+
         @startButton.addToStage @stage
 
         @loadSound = new Howl
@@ -62,12 +101,11 @@ class Loader
             onload: ->
                 console.log 'finished loading sound'
 
-        $ = @
         tween = new TWEEN.Tween(
             alpha: 0.0
         ).to(
             alpha: 1.0
-        , 16000).easing(TWEEN.Easing.Elastic.InOut).onUpdate( ->
+        , 9000).easing(TWEEN.Easing.Elastic.InOut).onUpdate( ->
             $.logo.alpha = @alpha
             return
         ).onComplete( ->
@@ -85,11 +123,18 @@ class Loader
             @tasksDone = true
 
     update: (deltaTime) ->
-        if @tasksDone
-            ## do change mode here
-            return
-        else
-            return
+        ##if @tradeOff is true
+        ##    @backgroundMaskRadius += 0.1
+        ##    @backgroundMask.beginFill()
+        ##    @backgroundMask.drawCircle 400, 320, @backgroundMaskRadius
+        ##    @backgroundMask.endFill()
+        ##    @background.mask = @backgroundMask
+
+        ##if @tasksDone
+        ##    ## do change mode here
+        ##    return
+        ##else
+        ##    return
 
         return
 
