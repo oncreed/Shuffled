@@ -16,17 +16,20 @@ class BeerPoweredEngine
         requestAnimationFrame @animate
         return
 
-    createScene: (id, tscene) ->
+    createScene: (id, tscene, callback) ->
         tscene ?= Scene
+        callback ?= ->
+
         return `undefined` if @scenes[id]
 
         scene = new tscene
+        scene.onUpdate callback
         @scenes[id] = scene
         scene
 
     goToScene: (id) ->
         if @scenes[id]?
-            @scene.paused() if @scene
+            @scene?.pause()
             @scene = @scenes[id]
             @scene.resume()
             return true
@@ -36,6 +39,7 @@ class BeerPoweredEngine
         requestAnimationFrame @animate
 
         return if not @scene? or @scene.isPaused()
+
         @stats.begin()
         @scene.update deltaTime
         @renderer.render @scene

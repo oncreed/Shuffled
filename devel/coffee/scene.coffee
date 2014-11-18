@@ -1,7 +1,8 @@
 globals = require 'sh-globals'
 
 class Scene extends PIXI.Stage
-    _poll: ->
+    _finish: false
+    _poll: (data) ->
         return
 
     constructor: (background) ->
@@ -16,7 +17,7 @@ class Scene extends PIXI.Stage
         return
 
     update: (deltaTime) ->
-        @_poll()
+        @_poll(@_finish)
         return
 
     pause: ->

@@ -40,16 +40,28 @@ class IntroScene extends Scene
         @logo.alpha = 0.0
         @logo.addToScene @
 
-        tween = new TWEEN.Tween(
+        fadeOut = new TWEEN.Tween(
+            alpha: 1.0
+        ).to(
+            alpha: 0.0
+        , 9000).easing(TWEEN.Easing.Elastic.InOut).onUpdate( ->
+            $.logo.alpha = @alpha
+            $.logoNoFill.alpha = @alpha
+            return
+        ).onComplete( ->
+            console.log 'completed animation'
+            $._finish = true
+            return
+        )
+
+        fadeIn = new TWEEN.Tween(
             alpha: 0.0
         ).to(
             alpha: 1.0
         , 9000).easing(TWEEN.Easing.Elastic.InOut).onUpdate( ->
             $.logo.alpha = @alpha
             return
-        ).onComplete( ->
-            return
-        ).start()
+        ).chain(fadeOut).start()
 
     update: (deltaTime) ->
         super deltaTime
