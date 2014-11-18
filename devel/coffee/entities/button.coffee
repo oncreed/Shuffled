@@ -34,4 +34,8 @@ class Button extends PIXI.Sprite
     getRenderPriority: ->
         return
 
+    addToScene: (scene) ->
+        scene.addChild @
+        return
+
 module.exports = Button

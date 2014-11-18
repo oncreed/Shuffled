@@ -3,23 +3,26 @@ Background = require 'background'
 Sketch = require 'sketch'
 Loader = require 'loader'
 
+# Current Scenes
+IntroScene = require 'introscene'
+GameScene = require 'gamescene'
+
 # ShuffledApp
 # The main entry point of the app
 class ShuffledApp
+    _coldStartup: true,
     constructor: (@screenWidth, @screenHeight) ->
         @engine = new BeerPoweredEngine @screenWidth, @screenHeight
-        @stage = new PIXI.Stage 0x000000
-        @engine.setStage @stage
-        @engine.setPoller @update
 
-        @loader = new Loader @screenWidth, @screenHeight, @stage
+        @game = @engine.createScene 'game', GameScene
+        @intro = @engine.createScene 'intro', IntroScene
 
-    update: (deltaTime) =>
-        @loader.update deltaTime
-        return
+        if @_coldStartup is true
+            @engine.goToScene 'intro'
+        else
+            @engine.gotoScene 'game'
 
     sketch: ->
         true
 
 module.exports = ShuffledApp
-

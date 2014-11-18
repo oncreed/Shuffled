@@ -31,8 +31,5 @@
     "underscore": "~1.7.0",
     "howler.js": "~1.1.25",
     "hammerjs": "~2.0.4"
-  },
-  "resolutions": {
-    "pixi": "~2.1.1"
   }
 }

@@ -1,8 +1,9 @@
+Scene = require 'scene'
 
 class BeerPoweredEngine
-    _scenes = null
-    _scene = null
     constructor: (@width, @height) ->
+        @scenes = {}
+        @scene = null
         @init()
 
     init: ->
@@ -15,40 +16,32 @@ class BeerPoweredEngine
         requestAnimationFrame @animate
         return
 
-    createScene: (id) ->
-        return `undefined` if @_scenes[id]
+    createScene: (id, tscene) ->
+        tscene ?= Scene
+        return `undefined` if @scenes[id]
 
-        scene = new Scene;
-        @_scenes[id] = scene
+        scene = new tscene
+        @scenes[id] = scene
         scene
 
     goToScene: (id) ->
-        if @_scenes[id]
-            @_scene.paused() if @_scene.scene
-            @_scene = @_scenes[id]
-            @_scene.resume()
+        if @scenes[id]?
+            @scene.paused() if @scene
+            @scene = @scenes[id]
+            @scene.resume()
             return true
         false
 
-    setScene: (scene) ->
-        @_scene = scene
-        return
-
-    setPoller: (poller) ->
-        @_poller = poller
-        return
-
     animate: (deltaTime) =>
-        @stats.begin()
-        if @_scene?
-            @renderer.render @_scene
+        requestAnimationFrame @animate
 
-        @_poller?.call()
+        return if not @scene? or @scene.isPaused()
+        @stats.begin()
+        @scene.update deltaTime
+        @renderer.render @scene
         @stats.end()
 
-        requestAnimationFrame @animate
         TWEEN.update deltaTime
         return
-
 
 module.exports = BeerPoweredEngine

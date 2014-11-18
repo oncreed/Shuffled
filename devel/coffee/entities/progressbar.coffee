@@ -10,4 +10,8 @@ class ProgressBar extends PIXI.Sprite
     settings: (opts) ->
         return
 
+    addToScene: (scene) ->
+        scene.addChild @
+        return
+
 module.exports = ProgressBar

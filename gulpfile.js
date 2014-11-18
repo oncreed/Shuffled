@@ -18,7 +18,7 @@ var rename = require('gulp-rename');
 
 /// contants
 var SERVER_PORT = 5000;
-var LIVERELOAD_PORT = 35729;
+var LIVERELOAD_PORT = 5100;
 
 var paths = {
     input: {
@@ -70,15 +70,17 @@ gulp.task('bundle', function() {
     return browserify('./app/assets/javascripts/main.js', { debug: true })
         .require('./app/assets/javascripts/globals', { expose: 'sh-globals' })
         .require('./app/assets/javascripts/configs', { expose: 'sh-configs' })
+        .require('./app/assets/javascripts/scene', { expose: 'scene' })
         .require('./app/assets/javascripts/shuffled', { expose: 'shuffled' })
         .require('./app/assets/javascripts/beerpoweredengine', { expose: 'beerpoweredengine' })
         .require('./app/assets/javascripts/entities/background', { expose: 'background' })
         .require('./app/assets/javascripts/entities/button', { expose: 'button' })
         .require('./app/assets/javascripts/entities/loader', { expose: 'loader' })
         .require('./app/assets/javascripts/entities/progressbar', { expose: 'progressbar' })
-        .require('./app/assets/javascripts/entities/scene', { expose: 'scene' })
         .require('./app/assets/javascripts/entities/sketch', { expose: 'sketch' })
         .require('./app/assets/javascripts/entities/systemtext', { expose: 'systemtext' })
+        .require('./app/assets/javascripts/scenes/introscene', { expose: 'introscene' })
+        .require('./app/assets/javascripts/scenes/gamescene', { expose: 'gamescene' })
         .bundle()
         .on('error', gutil.log)
         .pipe(source('bundle.js'))

@@ -11,8 +11,8 @@ class Background extends PIXI.Sprite
     getRenderPriority: ->
         @renderPriority
 
-    addToStage: (stage) ->
-        stage.addChild @
+    addToScene: (scene) ->
+        scene.addChild @
         return
 
 module.exports = Background
