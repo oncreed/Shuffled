@@ -15,8 +15,8 @@ class GameScene extends Scene
         @background.anchor.y = 0.5
         @background.position.x = Configs.desktop.settings.width / 2
         @background.position.y = Configs.desktop.settings.height / 2
-        @background.scale.x = 0.5
-        @background.scale.y = 0.5
+        @background.scale.x = 0.8
+        @background.scale.y = 0.8
         @background.filters = null
         @background.addToScene @
 

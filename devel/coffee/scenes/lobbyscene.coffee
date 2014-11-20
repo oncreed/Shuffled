@@ -26,7 +26,7 @@ class LobbyScene extends Scene
         @logo = new Sketch @textures[1]
         @logo.anchor.x = 0.5
         @logo.anchor.y = 0.5
-        @logo.position.x = 50
+        @logo.position.x = 70
         @logo.position.y = Configs.desktop.settings.height / 2
         @logo.scale.x = 0.7
         @logo.scale.y = 0.7
@@ -41,7 +41,7 @@ class LobbyScene extends Scene
             stroke: '#a4410e'
             strokeThickness: 5
         @buttons['start'].anchor.y = 0.5
-        @buttons['start'].position.x = Configs.desktop.settings.width / 2 + 60
+        @buttons['start'].position.x = Configs.desktop.settings.width / 2 - 10
         @buttons['start'].position.y = 90
         @buttons['start'].addToScene @
 
@@ -52,7 +52,7 @@ class LobbyScene extends Scene
             stroke: '#a4410e'
             strokeThickness: 5
         @buttons['option'].anchor.y = 0.5
-        @buttons['option'].position.x = Configs.desktop.settings.width / 2 + 60
+        @buttons['option'].position.x = Configs.desktop.settings.width / 2
         @buttons['option'].position.y = 160
         @buttons['option'].addToScene @
 
@@ -63,7 +63,7 @@ class LobbyScene extends Scene
             stroke: '#a4410e'
             strokeThickness: 5
         @buttons['board'].anchor.y = 0.5
-        @buttons['board'].position.x = Configs.desktop.settings.width / 2 + 60
+        @buttons['board'].position.x = Configs.desktop.settings.width / 2 + 10
         @buttons['board'].position.y = 230
         @buttons['board'].addToScene @
 
