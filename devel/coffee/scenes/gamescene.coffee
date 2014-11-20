@@ -1,20 +1,28 @@
-configs = require 'sh-configs'
+Configs = require 'Configs'
 
-Scene = require 'scene'
-Sketch = require 'sketch'
+Scene = require 'Scene'
+Sketch = require 'Sketch'
+SystemText = require 'SystemText'
 
 class GameScene extends Scene
     constructor: ->
         super
-        @texture = PIXI.Texture.fromImage '/assets/images/library_concept.jpg'
-        @bunny = new Sketch @texture
-        @bunny.anchor.x = 0.5
-        @bunny.anchor.y = 0.5
-        @bunny.position.x = configs.desktop.settings.width / 2
-        @bunny.position.y = configs.desktop.settings.height / 2
-        @bunny.addToScene @
+        blur = new PIXI.BlurFilter
+
+        @texture = PIXI.Texture.fromImage '/assets/images/canyon_of_ages.jpg'
+        @background = new Sketch @texture
+        @background.anchor.x = 0.5
+        @background.anchor.y = 0.5
+        @background.position.x = Configs.desktop.settings.width / 2
+        @background.position.y = Configs.desktop.settings.height / 2
+        @background.scale.x = 0.5
+        @background.scale.y = 0.5
+        @background.filters = null
+        @background.addToScene @
 
     update: (deltaTime) ->
+        $ = @
+
         super deltaTime
         return
 

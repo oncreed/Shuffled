@@ -1,4 +1,4 @@
-Scene = require 'scene'
+Scene = require 'Scene'
 
 class BeerPoweredEngine
     constructor: (@width, @height) ->

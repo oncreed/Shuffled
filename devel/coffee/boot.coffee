@@ -8,10 +8,10 @@ WebFontConfig =
             'Podkova:700'
         ]
     active: ->
-        configs = require 'sh-configs'
-        ShuffledApp = require 'shuffled'
-        app = new ShuffledApp configs.desktop.settings.width,
-            configs.desktop.settings.height
+        Configs = require 'Configs'
+        ShuffledApp = require 'Shuffled'
+        app = new ShuffledApp Configs.desktop.settings.width,
+            Configs.desktop.settings.height
         app.sketch()
         return
 

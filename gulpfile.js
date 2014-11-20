@@ -8,7 +8,7 @@ var gutil = require('gulp-util');
 var watch = require('gulp-watch');
 var connect = require('gulp-connect');
 var coffee = require('gulp-coffee');
-//var imagemin = require('gulp-imagemin');
+var imagemin = require('gulp-imagemin');
 var mocha = require('gulp-mocha');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
@@ -68,19 +68,22 @@ gulp.task('styles:prod', ['clean'], function() {
 /// process and bundle all required scripts in order to run
 gulp.task('bundle', function() {
     return browserify('./app/assets/javascripts/main.js', { debug: true })
-        .require('./app/assets/javascripts/globals', { expose: 'sh-globals' })
-        .require('./app/assets/javascripts/configs', { expose: 'sh-configs' })
-        .require('./app/assets/javascripts/scene', { expose: 'scene' })
-        .require('./app/assets/javascripts/shuffled', { expose: 'shuffled' })
-        .require('./app/assets/javascripts/beerpoweredengine', { expose: 'beerpoweredengine' })
-        .require('./app/assets/javascripts/entities/background', { expose: 'background' })
-        .require('./app/assets/javascripts/entities/button', { expose: 'button' })
-        .require('./app/assets/javascripts/entities/loader', { expose: 'loader' })
-        .require('./app/assets/javascripts/entities/progressbar', { expose: 'progressbar' })
-        .require('./app/assets/javascripts/entities/sketch', { expose: 'sketch' })
-        .require('./app/assets/javascripts/entities/systemtext', { expose: 'systemtext' })
-        .require('./app/assets/javascripts/scenes/introscene', { expose: 'introscene' })
-        .require('./app/assets/javascripts/scenes/gamescene', { expose: 'gamescene' })
+        .require('./app/assets/javascripts/globals', { expose: 'Globals' })
+        .require('./app/assets/javascripts/configs', { expose: 'Configs' })
+        .require('./app/assets/javascripts/scene', { expose: 'Scene' })
+        .require('./app/assets/javascripts/shuffled', { expose: 'Shuffled' })
+        .require('./app/assets/javascripts/beerpoweredengine', { expose: 'BeerPoweredEngine' })
+        .require('./app/assets/javascripts/entities/background', { expose: 'Background' })
+        .require('./app/assets/javascripts/entities/button', { expose: 'Button' })
+        .require('./app/assets/javascripts/entities/loader', { expose: 'Loader' })
+        .require('./app/assets/javascripts/entities/progressbar', { expose: 'ProgressBar' })
+        .require('./app/assets/javascripts/entities/sketch', { expose: 'Sketch' })
+        .require('./app/assets/javascripts/entities/systemtext', { expose: 'SystemText' })
+        .require('./app/assets/javascripts/scenes/introscene', { expose: 'IntroScene' })
+        .require('./app/assets/javascripts/scenes/lobbyscene', { expose: 'LobbyScene' })
+        .require('./app/assets/javascripts/scenes/optionscene', { expose: 'OptionScene' })
+        .require('./app/assets/javascripts/scenes/boardscene', { expose: 'BoardScene' })
+        .require('./app/assets/javascripts/scenes/gamescene', { expose: 'GameScene' })
         .bundle()
         .on('error', gutil.log)
         .pipe(source('bundle.js'))
@@ -103,13 +106,13 @@ gulp.task('scripts', ['clean'], function() {
 });
 
 /// process uncompress images
-//gulp.task('images', ['clean'], function() {
-//    return gulp.src(paths.input.images)
-//        .pipe(imagemin({ optimizationLevel: 5 }))
-//        .pipe(gulp.dest(paths.output.images))
-//        .pipe(connect.reload())
-//        .on('error', gutil.log);
-//});
+gulp.task('images', ['clean'], function() {
+    return gulp.src(paths.input.images)
+        .pipe(imagemin({ optimizationLevel: 5 }))
+        .pipe(gulp.dest(paths.output.images))
+        .pipe(connect.reload())
+        .on('error', gutil.log);
+});
 
 /// compress and minify javascripts
 gulp.task('minify', ['clean'], function() {

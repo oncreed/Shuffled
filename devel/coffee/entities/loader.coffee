@@ -1,9 +1,9 @@
-globals = require 'sh-globals'
+Globals = require 'Globals'
 
-Background = require 'background'
-Sketch = require 'sketch'
-ProgressBar = require 'progressbar'
-SystemText = require 'systemtext'
+Background = require 'Background'
+Sketch = require 'Sketch'
+ProgressBar = require 'ProgressBar'
+SystemText = require 'SystemText'
 
 class Loader
     constructor: (@screenWidth, @screenHeight, @stage) ->

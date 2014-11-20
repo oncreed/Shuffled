@@ -1,7 +1,7 @@
-configs = require 'sh-configs'
+Configs = require 'Configs'
 
-Scene = require 'scene'
-Sketch = require 'sketch'
+Scene = require 'Scene'
+Sketch = require 'Sketch'
 
 class IntroScene extends Scene
     constructor: ->
@@ -14,54 +14,50 @@ class IntroScene extends Scene
             PIXI.Texture.fromImage '/assets/images/pursuit.png'
         ]
 
+        blur = new PIXI.BlurFilter
+
         @background = new Sketch @textures[0]
         @background.anchor.x = 0.5
         @background.anchor.y = 0.5
-        @background.position.x = configs.desktop.settings.width / 2
-        @background.position.y = configs.desktop.settings.height / 2
+        @background.position.x = Configs.desktop.settings.width / 2
+        @background.position.y = Configs.desktop.settings.height / 2
+        @background.filters = [blur]
         @background.addToScene @
 
         @logoNoFill = new Sketch @textures[1]
         @logoNoFill.anchor.x = 0.5
         @logoNoFill.anchor.y = 0.5
-        @logoNoFill.position.x = configs.desktop.settings.width / 2
-        @logoNoFill.position.y = configs.desktop.settings.height / 2
+        @logoNoFill.position.x = Configs.desktop.settings.width / 2
+        @logoNoFill.position.y = Configs.desktop.settings.height / 2
         @logoNoFill.scale.x = 0.2
         @logoNoFill.scale.y = 0.2
+        @logoNoFill.alpha = 0.0
         @logoNoFill.addToScene @
 
         @logo = new Sketch @textures[2]
         @logo.anchor.x = 0.5
         @logo.anchor.y = 0.5
-        @logo.position.x = configs.desktop.settings.width / 2
-        @logo.position.y = configs.desktop.settings.height / 2
+        @logo.position.x = Configs.desktop.settings.width / 2
+        @logo.position.y = Configs.desktop.settings.height / 2
         @logo.scale.x = 0.2
         @logo.scale.y = 0.2
         @logo.alpha = 0.0
         @logo.addToScene @
 
-        fadeOut = new TWEEN.Tween(
-            alpha: 1.0
-        ).to(
+        new TWEEN.Tween(
             alpha: 0.0
-        , 9000).easing(TWEEN.Easing.Elastic.InOut).onUpdate( ->
+        ).to(
+            alpha: 1.0
+        , 9000).repeat(1).delay(1000).yoyo(true).easing(TWEEN.Easing.Elastic.InOut).onUpdate( ->
             $.logo.alpha = @alpha
             $.logoNoFill.alpha = @alpha
             return
         ).onComplete( ->
             console.log 'completed animation'
             $._finish = true
+            $._next = 'lobby'
             return
-        )
-
-        fadeIn = new TWEEN.Tween(
-            alpha: 0.0
-        ).to(
-            alpha: 1.0
-        , 9000).easing(TWEEN.Easing.Elastic.InOut).onUpdate( ->
-            $.logo.alpha = @alpha
-            return
-        ).chain(fadeOut).start()
+        ).start()
 
     update: (deltaTime) ->
         super deltaTime

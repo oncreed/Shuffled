@@ -1,8 +1,13 @@
-globals = require 'sh-globals'
+Globals = require 'Globals'
+
+Scene = require 'Scene'
+Sketch = require 'Sketch'
 
 class Sketch extends PIXI.Sprite
     constructor: (texture) ->
-        @renderPriority = globals.priority.normal
+        @actions = {}
+        @action = null
+        @renderPriority = 0
         super texture
 
     setRenderPriority: (layer) ->
@@ -10,6 +15,13 @@ class Sketch extends PIXI.Sprite
 
     getRenderPriority: ->
         @renderPriority
+
+    createAction: (id) ->
+        return `undefined` if @actions[id]
+
+        action = new Action
+        @actions = action
+        action
 
     addToScene: (scene) ->
         scene.addChild @

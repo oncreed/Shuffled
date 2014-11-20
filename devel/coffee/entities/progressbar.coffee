@@ -1,5 +1,3 @@
-globals = require 'sh-globals'
-
 class ProgressBar extends PIXI.Sprite
     constructor: (textureBlank, textureFull) ->
         super textureBlank

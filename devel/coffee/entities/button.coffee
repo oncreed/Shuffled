@@ -1,4 +1,4 @@
-globals = require 'sh-globals'
+Globals = require 'Globals'
 
 ButtonActiveState =
     inactive: 0

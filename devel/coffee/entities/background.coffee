@@ -1,8 +1,8 @@
-globals = require 'sh-globals'
+Globals = require 'Globals'
 
 class Background extends PIXI.Sprite
     constructor: (texture) ->
-        @renderPriority = globals.priority.background
+        @renderPriority = Globals.priority.background
         super texture
 
     setRenderPriority: (layer) ->
