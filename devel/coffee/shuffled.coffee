@@ -40,7 +40,7 @@ class ShuffledApp
                 $.engine.goToScene scene
             return
 
-        @engine.goToScene 'intro' if @_startup is true
+        @engine.goToScene 'game' if @_startup is true
 
         true
 
