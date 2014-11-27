@@ -11,8 +11,10 @@ class Scene extends PIXI.Stage
         super background
         return
 
-    onUpdate: (callback) ->
-        @_poll = callback
+    init: ->
+        return
+
+    destroy: ->
         return
 
     update: (deltaTime) ->
@@ -28,6 +30,10 @@ class Scene extends PIXI.Stage
 
         @_finish = false
         @_next = null
+        return
+
+    onUpdate: (callback) ->
+        @_poll = callback
         return
 
     isPaused: ->

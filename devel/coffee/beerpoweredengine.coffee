@@ -32,6 +32,7 @@ class BeerPoweredEngine
             @scene?.pause()
             @scene = @scenes[id]
             @scene.resume()
+            @scene.init()
             return true
         false
 

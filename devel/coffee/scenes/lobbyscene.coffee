@@ -2,15 +2,19 @@ Configs = require 'Configs'
 
 Scene = require 'Scene'
 Sketch = require 'Sketch'
+Button = require 'Button'
 SystemText = require 'SystemText'
 
 class LobbyScene extends Scene
     constructor: ->
         super
+        @init()
+
+    init: ->
         blur = new PIXI.BlurFilter
 
         @textures = [
-            PIXI.Texture.fromImage '/assets/images/library_concept.jpg'
+            PIXI.Texture.fromImage '/assets/images/lost_kids_contest.jpg'
             PIXI.Texture.fromImage '/assets/images/earth_circle.png'
         ]
 
@@ -67,22 +71,6 @@ class LobbyScene extends Scene
         @buttons['board'].position.y = 230
         @buttons['board'].addToScene @
 
-        ##elements = [
-        ##    @buttons['intro']
-        ##    @buttons['game']
-        ##    @buttons['option']
-        ##]
-
-        ##for e, i in elements
-        ##    e.mouseover = (data) =>
-        ##        e.scale.x = 1.1
-        ##        e.scale.y = 1.1
-        ##        return
-        ##    e.mouseout = (data) =>
-        ##        e.scale.x = 1.0
-        ##        e.scale.y = 1.0
-        ##        return
-
         ##@startButton.mousedown = (data) ->
         ##    $.startButton.scale.x = 0.8
         ##    $.startButton.scale.y = 0.8
@@ -99,6 +87,7 @@ class LobbyScene extends Scene
         ##    return
         ##@startButton.tap = (data) ->
         ##    return
+        return
 
     update: (deltaTime) ->
         $ = @

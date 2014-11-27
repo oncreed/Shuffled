@@ -2,13 +2,30 @@ Configs = require 'Configs'
 
 Scene = require 'Scene'
 Sketch = require 'Sketch'
+Button = require 'Button'
 SystemText = require 'SystemText'
 
 class OptionScene extends Scene
     constructor: ->
-        $ = @
-
         super
+        @init()
+
+    init: ->
+        blur = new PIXI.BlurFilter
+
+        @textures = [
+            PIXI.Texture.fromImage '/assets/images/lost_kids_contest.jpg'
+            PIXI.Texture.fromImage '/assets/images/earth_circle.png'
+        ]
+
+        @background = new Sketch @textures[0]
+        @background.anchor.x = 0.5
+        @background.anchor.y = 0.5
+        @background.position.x = Configs.desktop.settings.width / 2
+        @background.position.y = Configs.desktop.settings.height / 2
+        @background.filters = [blur]
+        @background.addToScene @
+
         @warning = new SystemText 'This is the option page',
             font: 'bold 42px Anton'
             align: 'center'
@@ -32,6 +49,10 @@ class OptionScene extends Scene
         @backButton.position.y = Configs.desktop.settings.height / 2 + 120
         @backButton.interactive = true
         @backButton.addToScene @
+        return
+
+    update: (deltaTime) ->
+        $ = @
 
         @backButton.mouseover = (data) ->
             $.backButton.scale.x = 1.1
@@ -51,8 +72,6 @@ class OptionScene extends Scene
             $.backButton.scale.x = 1.0
             $.backButton.scale.y = 1.0
             return
-
-    update: (deltaTime) ->
         super deltaTime
         return
 

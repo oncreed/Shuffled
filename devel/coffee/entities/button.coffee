@@ -16,7 +16,7 @@ class Button extends PIXI.Sprite
         @mode = ButtonMode.focus
 
     update: (deltaTime) ->
-        if @isPres
+        if @isPress
             if @mode is ButtonMode.click
                 @setTexture @texturePress
         return
@@ -24,9 +24,6 @@ class Button extends PIXI.Sprite
     press: ->
         @isPress = true
         return
-
-    getBoundingBox: ->
-        @getBounds
 
     setRenderPriority: ->
         return

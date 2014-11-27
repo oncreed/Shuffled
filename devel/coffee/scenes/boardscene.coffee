@@ -2,13 +2,17 @@ Configs = require 'Configs'
 
 Scene = require 'Scene'
 Sketch = require 'Sketch'
+Button = require 'Button'
 SystemText = require 'SystemText'
 
 class BoardScene extends Scene
     constructor: ->
+        super
+        @init()
+
+    init: ->
         $ = @
 
-        super
         @warning = new SystemText 'This is the leaderboard page',
             font: 'bold 42px Anton'
             align: 'center'
@@ -51,6 +55,7 @@ class BoardScene extends Scene
             $.backButton.scale.x = 1.0
             $.backButton.scale.y = 1.0
             return
+        return
 
     update: (deltaTime) ->
         super deltaTime
