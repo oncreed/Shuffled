@@ -7,8 +7,7 @@ SystemText = require 'SystemText'
 
 class BoardScene extends Scene
     constructor: ->
-        super
-        @init()
+        super 0xffffff
 
     init: ->
         $ = @
@@ -49,7 +48,7 @@ class BoardScene extends Scene
             $.backButton.scale.x = 0.8
             $.backButton.scale.y = 0.8
             $._finish = true
-            $._next = 'game'
+            $._next = 'lobby'
             return
         @backButton.mouseup = (data) ->
             $.backButton.scale.x = 1.0

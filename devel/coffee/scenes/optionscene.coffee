@@ -7,30 +7,14 @@ SystemText = require 'SystemText'
 
 class OptionScene extends Scene
     constructor: ->
-        super
-        @init()
+        super 0xffffff
 
     init: ->
-        blur = new PIXI.BlurFilter
-
-        @textures = [
-            PIXI.Texture.fromImage '/assets/images/lost_kids_contest.jpg'
-            PIXI.Texture.fromImage '/assets/images/earth_circle.png'
-        ]
-
-        @background = new Sketch @textures[0]
-        @background.anchor.x = 0.5
-        @background.anchor.y = 0.5
-        @background.position.x = Configs.desktop.settings.width / 2
-        @background.position.y = Configs.desktop.settings.height / 2
-        @background.filters = [blur]
-        @background.addToScene @
-
         @warning = new SystemText 'This is the option page',
             font: 'bold 42px Anton'
             align: 'center'
-            fill: '#3e1707'
-            stroke: '#a4410e'
+            fill: '#a7dbdb'
+            stroke: '#69d2e7'
             strokeThickness: 5
         @warning.anchor.x = 0.5
         @warning.anchor.y = 0.5
@@ -41,8 +25,8 @@ class OptionScene extends Scene
         @backButton = new SystemText 'Back',
             font: 'bold 42px Anton'
             align: 'center'
-            fill: '#3e1707'
-            stroke: '#a4410e'
+            fill: '#a7dbdb'
+            stroke: '#69d2e7'
             strokeThickness: 5
         @backButton.anchor.y = 0.5
         @backButton.position.x = Configs.desktop.settings.width / 2 + 60

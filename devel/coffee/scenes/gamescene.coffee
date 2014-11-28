@@ -7,26 +7,10 @@ SystemText = require 'SystemText'
 
 class GameScene extends Scene
     constructor: ->
-        super
-        @init()
+        super 0xffffff
 
     init: ->
-        blur = new PIXI.BlurFilter
-
         @symbols = []
-        @textures = [
-            PIXI.Texture.fromImage '/assets/images/lost_kids_contest.jpg'
-            PIXI.Texture.fromImage '/assets/images/earth_circle.png'
-        ]
-
-        @background = new Sketch @textures[0]
-        @background.anchor.x = 0.5
-        @background.anchor.y = 0.5
-        @background.position.x = Configs.desktop.settings.width / 2
-        @background.position.y = Configs.desktop.settings.height / 2
-        @background.filters = [blur]
-        @background.addToScene @
-
         xpos = [
             80
             160
@@ -105,6 +89,12 @@ class GameScene extends Scene
         @buttons['find'].position.x = Configs.desktop.settings.width / 2 + 260
         @buttons['find'].position.y = 340
         @buttons['find'].addToScene @
+
+        @overlay = new PIXI.Graphics
+        @overlay.beginFill 0xfffff
+        @overlay.drawCircle 0, 0, 300
+        @overlay.endFill()
+        @addChild @overlay
         return
 
     update: (deltaTime) ->
@@ -122,17 +112,22 @@ class GameScene extends Scene
         @buttons['shuffle'].mousedown = (data) ->
             $.buttons['shuffle'].scale.x = 0.8
             $.buttons['shuffle'].scale.y = 0.8
+            ##i = 0
+            ##while i < 6
+            ##    j = 0
+            ##    while j < 6
+            ##        index = i + j
+            ##        n = $.getRandomInt 0, $.chars.length
 
-            i = 0
-            while i < 6
-                j = 0
-                while j < 6
-                    index = i + j
-                    n = $.getRandomInt 0, $.chars.length
+            ##        $.symbols[index].setText $.chars[n]
+            ##        j++
+            ##    i++
 
-                    $.symbols[index].setText $.chars[n]
-                    j++
-                i++
+            @showOverlay()
+            return
+        @buttons['shuffle'].mouseup = (data) ->
+            $.buttons['shuffle'].scale.x = 1.0
+            $.buttons['shuffle'].scale.y = 1.0
             return
 
         super deltaTime
@@ -140,6 +135,10 @@ class GameScene extends Scene
 
     getRandomInt: (min, max) ->
         (Math.floor(Math.random() * (max - min + 1)) + min)
+
+    showOverlay: ->
+        
+        return
 
 
 module.exports = GameScene

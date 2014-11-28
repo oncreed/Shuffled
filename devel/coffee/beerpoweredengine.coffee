@@ -6,6 +6,8 @@ class BeerPoweredEngine
         @scene = null
         @init()
 
+        window.beer = @
+
     init: ->
         @renderer = PIXI.autoDetectRenderer @width, @height
         document.body.appendChild @renderer.view
@@ -23,6 +25,7 @@ class BeerPoweredEngine
         return `undefined` if @scenes[id]
 
         scene = new tscene
+        scene.init()
         scene.onUpdate callback
         @scenes[id] = scene
         scene
@@ -32,7 +35,6 @@ class BeerPoweredEngine
             @scene?.pause()
             @scene = @scenes[id]
             @scene.resume()
-            @scene.init()
             return true
         false
 

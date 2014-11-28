@@ -7,27 +7,15 @@ SystemText = require 'SystemText'
 
 class LobbyScene extends Scene
     constructor: ->
-        super
-        @init()
+        super 0xffffff
 
     init: ->
-        blur = new PIXI.BlurFilter
-
         @textures = [
-            PIXI.Texture.fromImage '/assets/images/lost_kids_contest.jpg'
             PIXI.Texture.fromImage '/assets/images/earth_circle.png'
         ]
 
-        @background = new Sketch @textures[0]
-        @background.anchor.x = 0.5
-        @background.anchor.y = 0.5
-        @background.position.x = Configs.desktop.settings.width / 2
-        @background.position.y = Configs.desktop.settings.height / 2
-        @background.filters = [blur]
-        @background.addToScene @
-
         @logoAngle = 0
-        @logo = new Sketch @textures[1]
+        @logo = new Sketch @textures[0]
         @logo.anchor.x = 0.5
         @logo.anchor.y = 0.5
         @logo.position.x = 70
@@ -37,12 +25,11 @@ class LobbyScene extends Scene
         @logo.addToScene @
 
         @buttons = {}
-
         @buttons['start'] = new SystemText 'Play',
             font: 'bold 42px Anton'
-            align: 'center'
-            fill: '#3e1707'
-            stroke: '#a4410e'
+            align: 'left'
+            fill: '#a7dbdb'
+            stroke: '#69d2e7'
             strokeThickness: 5
         @buttons['start'].anchor.y = 0.5
         @buttons['start'].position.x = Configs.desktop.settings.width / 2 - 10
@@ -52,8 +39,8 @@ class LobbyScene extends Scene
         @buttons['option'] = new SystemText 'Options',
             font: 'bold 42px Anton'
             align: 'left'
-            fill: '#3e1707'
-            stroke: '#a4410e'
+            fill: '#a7dbdb'
+            stroke: '#69d2e7'
             strokeThickness: 5
         @buttons['option'].anchor.y = 0.5
         @buttons['option'].position.x = Configs.desktop.settings.width / 2
@@ -63,30 +50,13 @@ class LobbyScene extends Scene
         @buttons['board'] = new SystemText 'LeaderBoards',
             font: 'bold 42px Anton'
             align: 'left'
-            fill: '#3e1707'
-            stroke: '#a4410e'
+            fill: '#a7dbdb'
+            stroke: '#69d2e7'
             strokeThickness: 5
         @buttons['board'].anchor.y = 0.5
         @buttons['board'].position.x = Configs.desktop.settings.width / 2 + 10
         @buttons['board'].position.y = 230
         @buttons['board'].addToScene @
-
-        ##@startButton.mousedown = (data) ->
-        ##    $.startButton.scale.x = 0.8
-        ##    $.startButton.scale.y = 0.8
-        ##    return
-        ##@startButton.mouseup = (data) ->
-        ##    $.startButton.scale.x = 1.0
-        ##    $.startButton.scale.y = 1.0
-        ##    return
-        ##@startButton.click = (data) ->
-        ##    return
-        ##@startButton.touchstart = (data) ->
-        ##    return
-        ##@startButton.touchend = (data) ->
-        ##    return
-        ##@startButton.tap = (data) ->
-        ##    return
         return
 
     update: (deltaTime) ->
@@ -95,18 +65,20 @@ class LobbyScene extends Scene
         ## TODO: need to minimize code
         @buttons['start'].interactive = true
         @buttons['start'].mouseover = (data) ->
-            $.buttons['start'].scale.x = 1.1
-            $.buttons['start'].scale.y = 1.1
+            window.beer.scenes['lobby'].buttons['start'].scale.x = 1.1
+            window.beer.scenes['lobby'].buttons['start'].scale.y = 1.1
             return
         @buttons['start'].mouseout = (data) ->
-            $.buttons['start'].scale.x = 1.0
-            $.buttons['start'].scale.y = 1.0
+            window.beer.scenes['lobby'].buttons['start'].scale.x = 1.0
+            window.beer.scenes['lobby'].buttons['start'].scale.y = 1.0
             return
         @buttons['start'].mousedown = (data) ->
-            $.buttons['start'].scale.x = 0.8
-            $.buttons['start'].scale.y = 0.8
+            window.beer.scenes['lobby'].buttons['start'].scale.x = 0.8
+            window.beer.scenes['lobby'].buttons['start'].scale.y = 0.8
             $._finish = true
             $._next = 'game'
+
+            console.log 'ehlo'
             return
 
         @buttons['option'].interactive = true
@@ -123,6 +95,8 @@ class LobbyScene extends Scene
             $.buttons['option'].scale.y = 0.8
             $._finish = true
             $._next = 'option'
+
+            console.log 'ehlo'
             return
         @buttons['option'].mouseup = (data) ->
             $.buttons['option'].scale.x = 1.0
@@ -135,6 +109,18 @@ class LobbyScene extends Scene
             $.buttons['board'].scale.y = 1.1
             return
         @buttons['board'].mouseout = (data) ->
+            $.buttons['board'].scale.x = 1.0
+            $.buttons['board'].scale.y = 1.0
+            return
+        @buttons['board'].mousedown = (data) ->
+            $.buttons['board'].scale.x = 0.8
+            $.buttons['board'].scale.y = 0.8
+            $._finish = true
+            $._next = 'board'
+
+            console.log 'ehlo'
+            return
+        @buttons['board'].mouseup = (data) ->
             $.buttons['board'].scale.x = 1.0
             $.buttons['board'].scale.y = 1.0
             return

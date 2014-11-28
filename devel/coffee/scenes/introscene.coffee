@@ -7,30 +7,18 @@ SystemText = require 'SystemText'
 
 class IntroScene extends Scene
     constructor: ->
-        super
-        @init()
+        super 0xffffff
 
     init: ->
         $ = @
 
         @textures = [
-            PIXI.Texture.fromImage '/assets/images/lost_kids_contest.jpg'
             PIXI.Texture.fromImage '/assets/images/pursuit_blue.png'
             PIXI.Texture.fromImage '/assets/images/pursuit.png'
             PIXI.Texture.fromImage '/assets/images/html5_logo.png'
         ]
 
-        blur = new PIXI.BlurFilter
-
-        @background = new Sketch @textures[0]
-        @background.anchor.x = 0.5
-        @background.anchor.y = 0.5
-        @background.position.x = Configs.desktop.settings.width / 2
-        @background.position.y = Configs.desktop.settings.height / 2
-        @background.filters = [blur]
-        @background.addToScene @
-
-        @logoNoFill = new Sketch @textures[1]
+        @logoNoFill = new Sketch @textures[0]
         @logoNoFill.anchor.x = 0.5
         @logoNoFill.anchor.y = 0.5
         @logoNoFill.position.x = Configs.desktop.settings.width / 2
@@ -40,7 +28,7 @@ class IntroScene extends Scene
         @logoNoFill.alpha = 0.0
         @logoNoFill.addToScene @
 
-        @logo = new Sketch @textures[2]
+        @logo = new Sketch @textures[1]
         @logo.anchor.x = 0.5
         @logo.anchor.y = 0.5
         @logo.position.x = Configs.desktop.settings.width / 2
@@ -50,7 +38,7 @@ class IntroScene extends Scene
         @logo.alpha = 0.0
         @logo.addToScene @
 
-        @tech = new Sketch @textures[3]
+        @tech = new Sketch @textures[2]
         @tech.anchor.x = 0.5
         @tech.anchor.y = 0.5
         @tech.position.x = Configs.desktop.settings.width / 2
@@ -64,7 +52,7 @@ class IntroScene extends Scene
             alpha: 0.0
         ).to(
             alpha: 1.0
-        , 4000).repeat(1).delay(1000).yoyo(true).easing(TWEEN.Easing.Elastic.InOut).onUpdate( ->
+        , 4000).repeat(1).delay(1000).yoyo(true).easing(TWEEN.Easing.Cubic.In).onUpdate( ->
             $.tech.alpha = @alpha
             return
         ).onComplete( ->
@@ -78,7 +66,7 @@ class IntroScene extends Scene
             alpha: 0.0
         ).to(
             alpha: 1.0
-        , 4000).repeat(1).delay(1000).yoyo(true).easing(TWEEN.Easing.Elastic.InOut).onUpdate( ->
+        , 4000).repeat(1).delay(1000).yoyo(true).easing(TWEEN.Easing.Cubic.In).onUpdate( ->
             $.logo.alpha = @alpha
             $.logoNoFill.alpha = @alpha
             return

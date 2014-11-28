@@ -8,6 +8,7 @@ Loader = require 'Loader'
 # Current Scenes
 IntroScene = require 'IntroScene'
 LobbyScene = require 'LobbyScene'
+BoardScene = require 'BoardScene'
 OptionScene = require 'OptionScene'
 GameScene = require 'GameScene'
 
@@ -32,6 +33,10 @@ class ShuffledApp
                 $.engine.goToScene scene
             return
         @option = @engine.createScene 'option', OptionScene, (finish, scene) ->
+            if finish is true
+                $.engine.goToScene scene
+            return
+        @board = @engine.createScene 'board', BoardScene, (finish, scene) ->
             if finish is true
                 $.engine.goToScene scene
             return
