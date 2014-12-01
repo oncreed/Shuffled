@@ -7,7 +7,7 @@ SystemText = require 'SystemText'
 
 class GameScene extends Scene
     constructor: ->
-        super 0xffffff
+        super 0x6B92B9
 
     init: ->
         @symbols = []
@@ -90,10 +90,21 @@ class GameScene extends Scene
         @buttons['find'].position.y = 340
         @buttons['find'].addToScene @
 
-        @overlay = new PIXI.Graphics
-        @overlay.beginFill 0xfffff
-        @overlay.drawCircle 0, 0, 300
-        @overlay.endFill()
+        canvas = document.createElement 'canvas'
+        canvas.width = Configs.desktop.settings.width
+        canvas.height = Configs.desktop.settings.height
+
+        context = canvas.getContext '2d'
+        context.beginPath()
+        context.rect 0, 0,
+            Configs.desktop.settings.width,
+            Configs.desktop.settings.height
+        context.fillStyle = 'rgba(0, 0, 0, 0.99)'
+        context.fill()
+
+        @overlay = new PIXI.Sprite PIXI.Texture.fromCanvas canvas
+        @overlay.alpha = 0.7
+        @overlay.visible = false
         @addChild @overlay
         return
 
@@ -112,17 +123,6 @@ class GameScene extends Scene
         @buttons['shuffle'].mousedown = (data) ->
             $.buttons['shuffle'].scale.x = 0.8
             $.buttons['shuffle'].scale.y = 0.8
-            ##i = 0
-            ##while i < 6
-            ##    j = 0
-            ##    while j < 6
-            ##        index = i + j
-            ##        n = $.getRandomInt 0, $.chars.length
-
-            ##        $.symbols[index].setText $.chars[n]
-            ##        j++
-            ##    i++
-
             @showOverlay()
             return
         @buttons['shuffle'].mouseup = (data) ->
@@ -137,7 +137,7 @@ class GameScene extends Scene
         (Math.floor(Math.random() * (max - min + 1)) + min)
 
     showOverlay: ->
-        
+        @overlay.visible = true
         return
 
 
