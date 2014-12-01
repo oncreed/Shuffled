@@ -99,12 +99,11 @@ class GameScene extends Scene
         context.rect 0, 0,
             Configs.desktop.settings.width,
             Configs.desktop.settings.height
-        context.fillStyle = 'rgba(0, 0, 0, 0.99)'
+        context.fillStyle = 'rgba(0, 0, 0, 0.5)'
         context.fill()
 
         @overlay = new PIXI.Sprite PIXI.Texture.fromCanvas canvas
-        @overlay.alpha = 0.7
-        @overlay.visible = false
+        @overlay.visible = true
         @addChild @overlay
         return
 

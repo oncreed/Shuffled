@@ -31,6 +31,8 @@ class BeerPoweredEngine
         @stats = new Stats
         document.body.appendChild @stats.domElement
 
+        texture = new PIXI.Texture.fromImage '/assets/images/bunny.png'
+
         @proton = new Proton
         @emitter = new Proton.BehaviourEmitter
         @emitter.rate = new Proton.Rate new Proton.Span(15, 13),
